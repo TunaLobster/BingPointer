@@ -1,0 +1,32 @@
+<!doctype html><html><head><title>Bing Point Generator</title>
+<script>
+function runner(ct){
+ setInterval(function(){go(ct);ct--},5000);
+}
+function go(cnt){
+ while(cnt > 0){
+  document.getElementById("bingIframe").src = "http://www.bing.com/search?q=" + cnt + "&adlt=strict";
+ }
+ document.getElementById("start").value = "Done!";
+ document.getElementById("bingIframe").src = "http://www.bing.com/rewards/dashboard";
+ break;
+}
+</script>
+</head><body style="background:#000;color:#FFF">
+<iframe
+  security="restricted"
+  sandbox="allow-forms allow-scripts"
+  id="bingIframe"
+  name="bingIframe"
+  src="http://www.bing.com/rewards/dashboard"
+  frameborder="1"
+  scrolling="yes"
+  style="width:1120px;height:630px;position:static;margin-left:auto;margin-right:auto;">
+</iframe>
+<div id="interface" style="background:#000;position:static;width:500px;height:10%;margin-left:auto;margin-right:auto">
+NOTE: 30 daily searches are required for full points.
+<input id="count" type="textbox" value="30" style="background-color:#222;color:#FFF;width:20px;border:none" />
+<input id="start" type="button" value="Start!" style="width:60px;" onclick="javascript:runner(document.getElementById('count').value)"></input>
+</div>
+
+</body></html>
