@@ -3,16 +3,30 @@
 function runner(ct){
  var timer = setInterval(function(){go(ct);ct--},10000);
 }
-function go(cnt){
- while(cnt > 0){
+function go(cnt) {
+ document.getElementById("start").disabled = true;
+ document.getElementById("count").disabled = true;
+ console.log("Running.................................................................................");
+ if(cnt > 0){
   document.getElementById("bingIframe").src = "http://www.bing.com/search?q=" + cnt + "&adlt=strict";
+  document.getElementById("count").value = cnt;
  }
- document.getElementById("start").value = "Done!";
- document.getElementById("bingIframe").src = "http://www.bing.com/rewards/dashboard";
- document.clearInterval(timer);
+ else{
+  document.getElementById("start").value = "Done!";
+  document.getElementById("bingIframe").src = "http://www.bing.com/rewards/dashboard";
+  document.getElementById("count").removeAttribute("disabled");
+  document.getElementById("start").removeAttribute("disabled");
+  window.clearInterval(timer);
+ }
 }
 </script>
 </head><body style="background:#000;color:#FFF">
+<div id="interface" style="background:#000;position:static;width:170px;height:10%;margin-left:auto;margin-right:auto">
+<input id="count" type="textbox" value="30" maxlength="2" onkeydown="if(event.keycode == 13) document.getElementById("Start!").click()" style="background-color:#444;color:#FFF;width:20px;border:2px solid #222" />
+<input id="start" type="button" value="Start!" style="width:60px;" onclick="javascript:runner(document.getElementById('count').value)"></input>
+<!--<input id="mobile" type="button" value="Mobile" style="width:80px" onclick="javascript:runner(20)"></input>-->
+</div>
+<div style="width:1120px;margin: 0 auto;">
 <iframe
   security="restricted"
   sandbox="allow-forms allow-scripts"
@@ -21,12 +35,7 @@ function go(cnt){
   src="http://www.bing.com/rewards/dashboard"
   frameborder="1"
   scrolling="yes"
-  style="width:1120px;height:630px;position:static;margin-left:auto;margin-right:auto;">
-</iframe>
-<div id="interface" style="background:#000;position:static;width:500px;height:10%;margin-left:auto;margin-right:auto">
-NOTE: 30 daily searches are required for full points.
-<input id="count" type="textbox" value="30" style="background-color:#222;color:#FFF;width:20px;border:none" />
-<input id="start" type="button" value="Start!" style="width:60px;" onclick="javascript:runner(document.getElementById('count').value)"></input>
-</div>
+  style="width:1120px;height:630px;">
+</iframe></div>
 
 </body></html>
