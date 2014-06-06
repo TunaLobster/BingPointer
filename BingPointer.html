@@ -8,7 +8,8 @@ function go(cnt) {
  document.getElementById("count").disabled = true;
  console.log("Running.................................................................................");
  if(cnt > 0){
-  document.getElementById("bingIframe").src = "http://www.bing.com/search?q=" + cnt + "&adlt=strict";
+  var search = Math.floor(Math.random()*5000);
+  document.getElementById("bingIframe").src = "http://www.bing.com/search?q=" + search + "&adlt=strict";
   document.getElementById("count").value = cnt;
  }
  else{
